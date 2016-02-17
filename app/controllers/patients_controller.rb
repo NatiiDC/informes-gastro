@@ -31,7 +31,7 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
+        format.html { redirect_to @patient, notice: 'El paciente se añadió' }
       else
         format.html { render :new }
       end
@@ -42,7 +42,7 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to @patient, notice: 'Se actualizaron los datos correctamente' }
       else
         format.html { render :edit }
       end
@@ -65,6 +65,19 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:type_document_cd, :document_number, :firstname, :lastname, :observations, :inspections_id)
+      params
+        .require(:patient)
+        .permit(
+          :type_document_cd,
+          :document_number,
+          :firstname,
+          :lastname,
+          :observations,
+          :birthdate,
+          :nationality,
+          :gender_cd,
+          :obra_social_type,
+          :obra_social_number,
+          :phone)
     end
 end
