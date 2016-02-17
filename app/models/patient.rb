@@ -1,6 +1,7 @@
 class Patient < ActiveRecord::Base
 
   as_enum :type_document, %i{dni, ci, lc}, prefix: true
+  as_enum :gender, %i{femenino, masculino}, prefix: true
 
   has_many :inspections
 
@@ -13,6 +14,9 @@ class Patient < ActiveRecord::Base
   validates :lastname,
     presence: true,
     length: { in: 2..30 }
+  validates :gender_cd,
+    presence: true,
+    inclusion: { in: %w(femenino masculino), message: "clave: %{value} no es valido" }
   validates :type_document_cd,
     presence: true,
     inclusion: { in: %w(DNI CI LD), message: "clave: %{value} no es valido" }
@@ -22,6 +26,11 @@ class Patient < ActiveRecord::Base
     less_than_or_equal_to: 99999999},
     uniqueness: {scope: :type_document_cd},
     presence: true
+  validates :birthdate,
+    presence: true
+  validates :nationality,
+    presence: true
+
 
 
 
