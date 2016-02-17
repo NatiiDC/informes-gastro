@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'simple_enum', '~> 2.0.0' , require: 'simple_enum/mongoid'
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
