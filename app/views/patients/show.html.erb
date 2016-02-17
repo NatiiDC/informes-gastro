@@ -1,29 +1,59 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-9 col-md-offset-0">
+<%= render template: "notice" %>
+  <div class="panel panel-default">
+  	<div class="panel-body">
+  		  <h3><legend class="text-center"> Informaci&oacute;n del paciente </h3></legend>
 
-<p>
-  <strong>Document number:</strong>
-  <%= @patient.document_number %>
-</p>
+        <p>
+          <strong>Apellido y nombre:</strong>
+          <%= @patient.lastname %> <%= @patient.firstname %>
+        </p>
+        <p>
+          <strong>Documento:</strong>
+          <%= @patient.document_number %>
+        </p>
+        <p>
+          <strong>Fecha de nacimiento:</strong>
+          <%= @patient.birthdate %>
+        </p>
+        <p>
+          <strong>Genero:</strong>
+          <%= @patient.gender_cd.capitalize %>
+        </p>
+        <p>
+          <strong>Nacionalidad:</strong>
+          <%= @patient.nationality %>
+        </p>
+        <p>
+          <strong>Obra Social:</strong>
+          <%= @patient.obra_social_type %> <%= @patient.obra_social_number %>
+        </p>
+        <p>
+          <strong>Teléfono:</strong>
+          <%= @patient.phone %>
+        </p>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @patient.firstname %>
-</p>
+        <p>
+          <strong>Observaciones:</strong>
+          <%= @patient.observations.capitalize %>
+        </p>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @patient.lastname %>
-</p>
+        <p>
+          <strong>
+            <%= link_to 'Historial de estudios', inspections_path(@patient), class: "btn btn-sm btn-default"  %>
+            <%= link_to 'Agregar estudio', new_inspection_path, class: "btn btn-sm btn-default"  %>
+          </strong>
+          <!-- <%= @patient.inspections %> -->
+        </p>
 
-<p>
-  <strong>Observations:</strong>
-  <%= @patient.observations %>
-</p>
-
-<p>
-  <strong>Inspections:</strong>
-  <%= @patient.inspections %>
-</p>
-
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>
+    </div>
+  </div>
+  <div class="pull-left">
+    <%= link_to 'Editar', edit_patient_path, class: "btn btn-sm btn-info"  %>
+  	<%= link_to 'Eliminar', patient_path, class:"btn btn-sm btn-danger",
+  							method: :delete, data: { confirm: '¿Estás seguro?' } %>
+  </div>
+  <div class="pull-right">
+  	<%= link_to 'Volver', patients_path, class: "btn btn-sm btn-default" %>
+  </div>
+</div>

@@ -1,6 +1,10 @@
-<h1>Editing Patient</h1>
+<div class="panel panel-default">
+	<div class="panel-body">
 
-<%= render 'form' %>
+    <div class="hidden">
+      <%= @title = "Editando datos" %>
+    </div>
+    <%= render 'form' %>
 
-<%= link_to 'Show', @patient %> |
-<%= link_to 'Back', patients_path %>
+  </div>
+</div>

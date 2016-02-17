@@ -1,37 +1,67 @@
 <%= form_for(@patient) do |f| %>
   <% if @patient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-
-      <ul>
-      <% @patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="container container-fluid">
+      <div id="error_explanation">
+        <h3> Encontramos <%= pluralize(@client.errors.count, "error") %>/es en el formulario:</h3>
+        <ul>
+        <% @client.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
+  <fieldset>
+    <legend class="text-center"><h2> <%= @title %> </h2></legend>
+    <div class="form-group">
+      <%= f.label :"Nombre/s", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :firstname, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Apellido/s", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :lastname, class: "form-control", required: true  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Tipo De Documento", class: "col-md-4 control-label" %>
+      <%= f.select(:type_document_cd, [['DNI', 'DNI'], ['CI', 'CI'], ['LD', 'LD']], class:"form-control", required: true ) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Número de documento", class: "col-md-4 control-label" %><br>
+      <%= f.number_field :document_number, class: "form-control", required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :"Nombre/s" %><br>
-    <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :"Apellido/s" %><br>
-    <%= f.text_field :lastname %>
-  </div>
-  <div class="field">
-    <%= f.label :"Tipo De Documento", class: "col-md-4 control-label" %>
-    <%= f.select(:type_document_cd, [['DNI', 'DNI'], ['CI', 'CI'], ['LD', 'LD']], class:"form-control" ) %>
-  </div>
-  <div class="field">
-    <%= f.label :"Número de documento" %><br>
-    <%= f.number_field :document_number %>
-  </div>
-  <div class="field">
-    <%= f.label :"Observaciones" %><br>
-    <%= f.text_field :observations %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :"Fecha de nacimiento", class: "col-md-4 control-label" %><br>
+      <%= f.date_field :birthdate, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Nacionalidad", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :nationality, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Sexo", class: "col-md-4 control-label" %><br>
+      <%= f.select(:gender_cd, [['Femenino', 'femenino'], ['Masculino', 'masculino']], class:"form-control", required: true ) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Tipo de obra social", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :obra_social_type, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Numero de obra social", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :obra_social_number, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"Telefono", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :phone, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"Observaciones", class: "col-md-4 control-label" %><br>
+      <%= f.text_field :observations, class: "form-control" %>
+    </div>
+    <div class="actions form-group">
+      <%= link_to "Cancelar", patients_path, class:"btn btn-danger", :required => true %>
+      <%= f.submit class:"btn btn-primary", value: "Guardar"%>
+    </div>
+  <fieldset>
 <% end %>
