@@ -1,0 +1,28 @@
+<aside class="sidebar col-sm-3">
+  <ul>
+    <div class="panel-group" aria-multiselectable="true">
+    <img src="endoscopia.jpg" alt="gastroenterologia" class="img-rounded" height="75%" width="75%">
+      <div class="panel-heading" role="tab">
+        <div class="panel-title">
+            Pacientes
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-pills nav-stacked">
+            <li><%= link_to 'Ingresar nuevo', new_patient_path %>
+            <li><%= link_to 'Listado de pacientes', patients_path %></li>
+          </ul>
+        </div>
+        <div class="panel-title">
+            Informes
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-pills nav-stacked">
+            <li><%= link_to 'Crear nuevo', new_inspection_path %>
+            <li><%= link_to 'Listado de informes', inspections_path %>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </ul>
+</aside>
