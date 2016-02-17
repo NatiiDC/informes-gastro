@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_number: 1
+  firstname: MyString
+  lastname: MyString
+  observations: MyString
+  inspections_id: 
+
+two:
+  document_number: 1
+  firstname: MyString
+  lastname: MyString
+  observations: MyString
+  inspections_id: 

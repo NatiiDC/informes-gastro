@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @inspection.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @inspection.type %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @inspection.date %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @inspection.reason %>
+</p>
+
+<p>
+  <strong>Report:</strong>
+  <%= @inspection.report %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @inspection.conclusion %>
+</p>
+
+<p>
+  <strong>Diagnostic:</strong>
+  <%= @inspection.diagnostic %>
+</p>
+
+<%= link_to 'Edit', edit_inspection_path(@inspection) %> |
+<%= link_to 'Back', inspections_path %>

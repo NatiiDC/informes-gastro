@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  date: 2016-02-03
+  reason: MyString
+  report: MyString
+  conclusion: MyString
+  diagnostic: MyString
+
+two:
+  name: MyString
+  type: 
+  date: 2016-02-03
+  reason: MyString
+  report: MyString
+  conclusion: MyString
+  diagnostic: MyString
