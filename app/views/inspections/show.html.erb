@@ -1,39 +1,83 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @inspection.name %>
-</p>
+<%= render template: "notice" %>
 
-<p>
-  <strong>Type:</strong>
-  <%= @inspection.type %>
-</p>
+<hr>
+<div class="container-fluid">
+  <div class="pull-right">
+    <strong>Fecha:</strong>
+    <%= @inspection.date %>
+  </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @inspection.date %>
-</p>
+  <p>
+    <strong>Estudio:</strong>
+    <%= @inspection.study_of_name %>
+  </p>
 
-<p>
-  <strong>Reason:</strong>
-  <%= @inspection.reason %>
-</p>
+  <p>
+    <u><strong>Datos del paciente</strong></u>
+    <p>
+      <div class="pull-right">
+        <strong>Edad </strong><%= age(@patient.birthdate)%>
+      </div>
+      <strong>Apellido y nombre</strong><t>
+      <%= @patient.lastname %> <%= @patient.firstname %>
+      <br>
+      <strong>Documento</strong>
+      <%= @patient.type_document_cd %> <%= @patient.document_number %>
+      <br>
+      <strong>Obra Social</strong>
+      <% if (@patient.obra_social_type.nil? || @patient.obra_social_number.nil?)  %>
+        [Sin Obra Social]
+      <% else %>
+        <%= @patient.obra_social_type %> <%= @patient.obra_social_number %>
+      <% end %>
+    </p>
+  </p>
+</div>
+<hr>
+<div class="container-fluid">
+  <p>
+    <strong>Motivo de consulta:</strong>
+    <%= @inspection.reason %>
+  </p>
 
-<p>
-  <strong>Report:</strong>
-  <%= @inspection.report %>
-</p>
+  <p>
+    <strong>Tipo de Estudio:</strong>
+    <%=@inspection.study_of_type %>
+  </p>
 
-<p>
-  <strong>Conclusion:</strong>
-  <%= @inspection.conclusion %>
-</p>
+  <p>
+    <strong>Informe:</strong>
+    <%= @inspection.report %>
+  </p>
 
-<p>
-  <strong>Diagnostic:</strong>
-  <%= @inspection.diagnostic %>
-</p>
+  <p>
+    <strong>Conclusión:</strong>
+    <%= @inspection.conclusion %>
+  </p>
 
-<%= link_to 'Edit', edit_inspection_path(@inspection) %> |
-<%= link_to 'Back', inspections_path %>
+  <p>
+    <strong>Diagnostic:</strong>
+    <%= @inspection.diagnostic %>
+  </p>
+</div>
+<hr>
+<%= form_for([@inspection, @inspection.images.build, :html => {:multipart => true}]) do |f| %>
+  <div class="field">
+    <%= f.label :"Imagenes" %><br>
+    <%= f.file_field :data, class: "form-control"%>
+  </div>
+  <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}_#{Time.new.strftime("%d/%m/%Y-%H:%Hhs.-%L}")}}%>
+  <div class="actions form-group">
+    <%= f.submit class:"btn btn-primary", value: "Guardar"%>
+  </div>
+<% end %>
+<hr>
+<div class="pull-left">
+  <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
+  <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
+              method: :delete, data: { confirm: '¿Estás seguro?' } %>
+</div>
+<div class="pull-right">
+  <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
+</div>

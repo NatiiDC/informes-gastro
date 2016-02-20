@@ -6,15 +6,15 @@
 
         <p>
           <strong>Apellido y nombre:</strong>
-          <%= @patient.lastname %> <%= @patient.firstname %>
+          <%= @patient.lastname %>, <%= @patient.firstname %>
         </p>
         <p>
           <strong>Documento:</strong>
-          <%= @patient.document_number %>
+          <%= @patient.type_document_cd %> <%= @patient.document_number %>
         </p>
         <p>
           <strong>Fecha de nacimiento:</strong>
-          <%= @patient.birthdate %>
+          <%= @patient.birthdate.strftime "%d-%m-%Y" %>
         </p>
         <p>
           <strong>Genero:</strong>
@@ -40,10 +40,9 @@
 
         <p>
           <strong>
-            <%= link_to 'Historial de estudios', inspections_path(@patient), class: "btn btn-sm btn-default"  %>
-            <%= link_to 'Agregar estudio', new_inspection_path, class: "btn btn-sm btn-default"  %>
+            <%= link_to 'Historial de estudios', patient_inspections_path(@patient), class: "btn btn-sm btn-default"  %>
+            <%= link_to 'Agregar estudio', new_patient_inspection_path(@patient), class: "btn btn-sm btn-default"  %>
           </strong>
-          <!-- <%= @patient.inspections %> -->
         </p>
 
     </div>

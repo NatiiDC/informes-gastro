@@ -2,8 +2,15 @@ Rails.application.routes.draw do
 
   root 'patients#index'
 
-  resources :patients
-  resources :inspections
+  resources :patients do
+    resources :inspections, only: [:new, :create, :index]
+  end
+
+  resources :inspections, only: [:show, :edit, :update, :destroy] do
+      resources :images
+  end
+
+  get '/patient_choice' => 'inspections#patient_choice'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,4 @@
-<%= form_for(@inspection) do |f| %>
+<%= form_for([@patient, @patient.inspections.build]) do |f| %>
   <% if @inspection.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inspection.errors.count, "error") %> prohibited this inspection from being saved:</h2>
@@ -11,35 +11,38 @@
     </div>
   <% end %>
 
+  <legend class="text-center"><h2> <%= @title %> </h2></legend>
+
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :"Fecha" %><br>
+    <%= f.date_select :date, required: true %>
   </div>
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
+    <%= f.label :"Estudio" %><br>
+    <%= f.select(:study_of_name, [['VideoEndoscopiaDigestivaAlta', 'VideoEndoscopiaDigestivaAlta'], ['VideoColonoscopia', 'VideoColonoscopia']], required: true ) %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.label :"Motivo" %><br>
+    <%= f.text_field :reason, role:"textbox", class: "form-control", height:"308", required: true %>
   </div>
   <div class="field">
-    <%= f.label :reason %><br>
-    <%= f.text_field :reason %>
+    <%= f.label :"Tipo de estudio" %><br>
+    <%= f.text_field :study_of_type, class: "form-control", required: true %>
   </div>
   <div class="field">
-    <%= f.label :report %><br>
-    <%= f.text_field :report %>
+    <%= f.label :"Informe" %><br>
+    <%= f.text_area :report, class: "form-control", required: true %>
   </div>
   <div class="field">
-    <%= f.label :conclusion %><br>
-    <%= f.text_field :conclusion %>
+    <%= f.label :"Conclusión" %><br>
+    <%= f.text_area :conclusion, class: "form-control", required: true %>
   </div>
   <div class="field">
-    <%= f.label :diagnostic %><br>
-    <%= f.text_field :diagnostic %>
+    <%= f.label :"Diagnostico" %><br>
+    <%= f.text_field :diagnostic, class: "form-control"%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions form-group">
+    <%= link_to "Cancelar", :back , class:"btn btn-danger" %>
+    <%= f.submit class:"btn btn-primary", value: "Guardar"%>
   </div>
 <% end %>

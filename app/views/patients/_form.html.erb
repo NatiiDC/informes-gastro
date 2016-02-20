@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
       <%= f.label :"Número de documento", class: "col-md-4 control-label" %><br>
-      <%= f.number_field :document_number, class: "form-control", required: true %>
+      <%= f.number_field :document_number, class: "form-control", min: "800000", max: "99999999",  required: true %>
     </div>
 
     <div class="form-group">
@@ -60,7 +60,7 @@
       <%= f.text_field :observations, class: "form-control" %>
     </div>
     <div class="actions form-group">
-      <%= link_to "Cancelar", patients_path, class:"btn btn-danger", :required => true %>
+      <%= link_to "Cancelar", patients_path, class:"btn btn-danger"%>
       <%= f.submit class:"btn btn-primary", value: "Guardar"%>
     </div>
   <fieldset>

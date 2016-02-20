@@ -1,5 +1,3 @@
-<h1>New Inspection</h1>
 
+<% @title = "Paciente " << @patient.firstname << " " << @patient.lastname %>
 <%= render 'form' %>
-
-<%= link_to 'Back', inspections_path %>

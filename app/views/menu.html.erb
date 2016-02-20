@@ -8,7 +8,7 @@
         </div>
         <div class="panel-body">
           <ul class="nav nav-pills nav-stacked">
-            <li><%= link_to 'Ingresar nuevo', new_patient_path %>
+            <li><%= link_to 'Ingresar nuevo', new_patient_path %></li>
             <li><%= link_to 'Listado de pacientes', patients_path %></li>
           </ul>
         </div>
@@ -17,8 +17,10 @@
         </div>
         <div class="panel-body">
           <ul class="nav nav-pills nav-stacked">
-            <li><%= link_to 'Crear nuevo', new_inspection_path %>
-            <li><%= link_to 'Listado de informes', inspections_path %>
+            <li><%= link_to 'Crear nuevo', patient_choice_path %></li>
+            <% if (! @patient.nil?) && ( !@patient.new_record?) %>
+            <li><%= link_to 'Listado de informes', patient_inspections_path(@patient) %></li>
+            <% end %>
           </ul>
         </div>
       </div>

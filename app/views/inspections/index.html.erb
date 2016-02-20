@@ -1,39 +1,37 @@
 <p id="notice"><%= notice %></p>
+<legend class="text-center">
+  <h2> Listado de informes del paciente <%=link_to %Q{#{@patient.firstname} #{@patient.lastname}}, patient_path(@patient) %>
+  </h2>
+</legend>
 
-<h1>Listing Inspections</h1>
-
-<table>
+<table class="table table-hover table-bordered table-condensed text-center">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Date</th>
-      <th>Reason</th>
-      <th>Report</th>
-      <th>Conclusion</th>
-      <th>Diagnostic</th>
-      <th colspan="3"></th>
+      <th class="text-center" >Estudio</th>
+      <th class="text-center" >Tipo de Estudio</th>
+      <th class="text-center" >Dia</th>
+      <th class="text-center" >Motivo</th>
+      <th class="text-center" >Informe</th>
+      <th class="text-center" >Conclusión</th>
+      <th class="text-center" >Acciones</th>
     </tr>
   </thead>
 
   <tbody>
     <% @inspections.each do |inspection| %>
       <tr>
-        <td><%= inspection.name %></td>
-        <td><%= inspection.type %></td>
-        <td><%= inspection.date %></td>
+        <td><%= inspection.study_of_name %></td>
+        <td><%= inspection.study_of_type %></td>
+        <td><%= inspection.date.strftime("%d-%m-%Y") %></td>
         <td><%= inspection.reason %></td>
         <td><%= inspection.report %></td>
         <td><%= inspection.conclusion %></td>
-        <td><%= inspection.diagnostic %></td>
-        <td><%= link_to 'Show', inspection %></td>
-        <td><%= link_to 'Edit', edit_inspection_path(inspection) %></td>
-        <td><%= link_to 'Destroy', inspection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Ver', inspection, class:"btn btn-xs btn-info"  %>
+          <%= link_to 'Editar', edit_inspection_path(inspection), class:"btn btn-xs btn-info"  %>
+          <%= link_to 'Eliminar', inspection, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-xs btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Inspection', new_inspection_path %>
