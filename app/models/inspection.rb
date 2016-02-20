@@ -1,5 +1,6 @@
 class Inspection < ActiveRecord::Base
   belongs_to :patient
+  has_many :images
 
   validates :study_of_name,
     presence: true
