@@ -5,6 +5,10 @@ class InspectionsController < ApplicationController
     @patients = Patient.all
   end
 
+  def new_image
+
+  end
+
   # GET /inspections
   def index
     @patient = Patient.find(params["patient_id"])
@@ -40,21 +44,17 @@ class InspectionsController < ApplicationController
 
   # PATCH/PUT /inspections/1
   def update
-    respond_to do |format|
-      if @inspection.update(inspection_params)
-        format.html { redirect_to @inspection, notice: 'El informe se ha actualizado' }
-      else
-        format.html { render :edit }
-      end
+    if @inspection.update(inspection_params)
+      redirect_to @inspection, notice: 'El informe se ha actualizado'
+    else
+      render :edit
     end
   end
 
   # DELETE /inspections/1
   def destroy
     @inspection.destroy
-    respond_to do |format|
-      format.html { redirect_to inspections_url, notice: 'El informe se ha eliminado' }
-    end
+    redirect_to inspections_url, notice: 'El informe se ha eliminado'
   end
 
   private

@@ -62,16 +62,18 @@
   </p>
 </div>
 <hr>
-<!-- <%= form_for(@inspection) do |f| %>
-  <div class="field">
-    <%= f.label :"Imagenes" %><br>
-    <%= f.file_field :data, class: "form-control"%>
+<!--
+<form class="new_image" id="new_image" action="/inspections/<%=%Q{#{@inspection.id}}%>" accept-charset="UTF-8" method="post">
+  <div class="form-group">
+    <input name="utf8" type="hidden" value="✓">
+    <label> Imágenes </label>
+    <input type="file" id="image" name="image" multiple="true" value="">
   </div>
-  <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}_#{Time.new.strftime("%d/%m/%Y-%H:%Hhs.-%L}")}}%>
-  <div class="actions form-group">
-    <%= f.submit class:"btn btn-primary", value: "Guardar"%>
+  <div class="form-group">
+    <input type="submit" name="commit" value="Guardar" class="btn btn-primary">
   </div>
-<% end %> -->
+</form> -->
+
 <hr>
 <div class="pull-left">
   <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
