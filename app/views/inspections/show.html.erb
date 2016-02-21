@@ -62,7 +62,7 @@
   </p>
 </div>
 <hr>
-<%= form_for([@inspection, @inspection.images.build, :html => {:multipart => true}]) do |f| %>
+<!-- <%= form_for(@inspection) do |f| %>
   <div class="field">
     <%= f.label :"Imagenes" %><br>
     <%= f.file_field :data, class: "form-control"%>
@@ -71,7 +71,7 @@
   <div class="actions form-group">
     <%= f.submit class:"btn btn-primary", value: "Guardar"%>
   </div>
-<% end %>
+<% end %> -->
 <hr>
 <div class="pull-left">
   <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
