@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   resources :inspections, only: [:show, :edit, :update, :destroy] do
-      resources :images
+      resources :images do
+        get "serve", :on => :member
+      end
   end
 
   get '/patient_choice' => 'inspections#patient_choice'

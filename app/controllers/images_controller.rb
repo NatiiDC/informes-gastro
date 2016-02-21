@@ -3,13 +3,25 @@ class ImagesController < ApplicationController
   def create
     @inspection = Inspection.find(params['inspection_id'])
 
-    # PROBLEMAS AL GUARDAR LA IMAGEN
+    @next = true
+    params["image"]["data"].each do |data|
+      if @next
+        @image = @inspection.images.new(
+        "name" => params["image"]["name"],
+        "data" => data.read,
+        "filename" => data.original_filename,
+        "mime_type" => data.content_type)
+        @next = @image.save
+      else
+        break
+      end
+    end
 
-    @image = @inspection.images.new(
-      {"name" => params["image"]["name"]},
-      {"data" => params["image"]["data"].read},
-      {"filename" => params["image"]["data"].original_filename},
-      {"mime_type" => params["image"]["data"].content_type})
+    # @image = @inspection.images.new(
+    # "name" => params["image"]["name"],
+    # "data" => params["image"]["data"].read,
+    # "filename" => params["image"]["data"].original_filename,
+    # "mime_type" => params["image"]["data"].content_type)
 
     # @image = @inspection.images.new(params[:image]) do |t|
     #   if params[:image][:data]
@@ -19,21 +31,26 @@ class ImagesController < ApplicationController
     #   end
     # end
 
-    if @image.save
-      redirect_to :back, notice: 'La imagen se ha guardado'
+    # if @image.save
+    if @next
+      redirect_to :back, notice: 'La/s imagen/es se ha/n guardado'
     else
       render :back
     end
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
-    @photo.destroy
+    @image = Image.find(params[:id])
+    @image.destroy
     redirect_to :back
   end
 
-  private
+  def serve
+    @image = Image.find(params[:id])
+    send_data(@image.data, :type => @image.mime_type, :filename => "#{@image.name}.jpg", :disposition => "inline")
+  end
 
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def inspection_params
       params

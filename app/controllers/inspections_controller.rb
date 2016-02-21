@@ -13,7 +13,7 @@ class InspectionsController < ApplicationController
 
   # GET /inspections/1
   def show
-
+    @images = @inspection.images
     @patient = @inspection.patient
   end
 
