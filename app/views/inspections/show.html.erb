@@ -1,6 +1,9 @@
 
 <%= render template: "notice" %>
 
+<div class="pull-right">
+  <%= link_to "Imprimir", '#', class:"btn btn-default hidden-print", onclick: "printpage()" %>
+</div>
 <hr>
 <div class="container-fluid">
   <div class="pull-right">
@@ -62,22 +65,38 @@
   </p>
 </div>
 <hr>
-<%= form_for([@inspection, @inspection.images.build, :html => {:multipart => true}]) do |f| %>
-  <div class="field">
-    <%= f.label :"Imagenes" %><br>
-    <%= f.file_field :data, class: "form-control"%>
-  </div>
-  <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}_#{Time.new.strftime("%d/%m/%Y-%H:%Hhs.-%L}")}}%>
-  <div class="actions form-group">
-    <%= f.submit class:"btn btn-primary", value: "Guardar"%>
-  </div>
+
+<% @images.each do |image| %>
+      <div class="pull-right">
+      <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
+      class:"btn btn-sm btn-danger hidden-print",
+        method: :delete%>
+      </div>
+      <div class="text-center">
+      <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
+          style: "max-width:350px;max-height:350px"%>
+      </div>
+      <br>
 <% end %>
-<hr>
-<div class="pull-left">
-  <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
-  <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
-              method: :delete, data: { confirm: '¿Estás seguro?' } %>
-</div>
-<div class="pull-right">
-  <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
+<br>
+<div class="hidden-print">
+  <%= form_for([@inspection, @inspection.images.build]) do |f| %>
+    <div class="field">
+      <%= f.label :"Imagenes" %><br>
+      <%= f.file_field :data, multiple: true, class: "form-control"%>
+    </div>
+    <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}_#{Time.new.strftime("%d/%m/%Y-%H:%Hhs}")}}%>
+    <div class="actions form-group">
+      <%= f.submit class:"btn btn-primary", value: "Guardar"%>
+    </div>
+  <% end %>
+  <hr>
+  <div class="pull-left">
+    <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
+    <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
+                method: :delete, data: { confirm: '¿Estás seguro?' } %>
+  </div>
+  <div class="pull-right">
+    <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
+  </div>
 </div>
