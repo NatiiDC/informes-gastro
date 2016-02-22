@@ -86,18 +86,17 @@
     <%= @inspection.conclusion %>
   </p>
   <p>
-    <strong>Diagnostic:</strong>
+    <strong>Diagnostico:</strong>
     <%= @inspection.diagnostic %>
   </p>
+
+  <% @images.each do |image| %>
+    <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
+        style: "max-width:230px;max-height:230px"%>
+    <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
+        class:"btn btn-sm btn-danger hidden-print", method: :delete%>
+  <% end %>
 </div>
-
-<% @images.each do |image| %>
-  <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
-      style: "max-width:230px;max-height:230px"%>
-  <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
-      class:"btn btn-sm btn-danger hidden-print", method: :delete%>
-
-<% end %>
 <br><br>
 <div class="hidden-print">
   <%= form_for([@inspection, @inspection.images.build]) do |f| %>
