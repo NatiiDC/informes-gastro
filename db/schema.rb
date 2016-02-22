@@ -36,9 +36,11 @@ ActiveRecord::Schema.define(version: 20160220004155) do
     t.string   "stomach"
     t.string   "esophagus"
     t.string   "duodenum"
+    t.string   "colonoscopy"
+    t.string   "rectal_examination"
     t.integer  "patient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "inspections", ["patient_id"], name: "index_inspections_on_patient_id"

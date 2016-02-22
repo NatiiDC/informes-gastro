@@ -11,6 +11,8 @@ class CreateInspections < ActiveRecord::Migration
       t.string :stomach
       t.string :esophagus
       t.string :duodenum
+      t.string :colonoscopy
+      t.string :rectal_examination
 
       t.references :patient, index: true
 
