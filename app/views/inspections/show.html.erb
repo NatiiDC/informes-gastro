@@ -1,6 +1,10 @@
 
 <%= render template: "notice" %>
-
+<div class="text-center">
+  <div class="visible-print-inline">
+    <img src="/caratula.png" alt="gastroenterologia" class="img-rounded" height="60%" width="60%">
+  </div>
+</div>
 <div class="pull-right">
   <%= link_to "Imprimir", '#', class:"btn btn-default hidden-print", onclick: "printpage()" %>
 </div>
@@ -10,15 +14,12 @@
     <strong>Fecha:</strong>
     <%= @inspection.date %>
   </div>
-
   <p>
     <strong>Estudio:</strong>
     <%= @inspection.study_of_name %>
   </p>
-
   <p>
     <u><strong>Datos del paciente</strong></u>
-    <p>
       <div class="pull-right">
         <strong>Edad </strong><%= age(@patient.birthdate)%>
       </div>
@@ -34,10 +35,10 @@
       <% else %>
         <%= @patient.obra_social_type %> <%= @patient.obra_social_number %>
       <% end %>
-    </p>
   </p>
 </div>
-<hr>
+<hr class="remove-margin">
+<br>
 <div class="container-fluid">
   <p>
     <strong>Motivo de consulta:</strong>
@@ -54,31 +55,50 @@
     <%= @inspection.report %>
   </p>
 
+<% if @inspection.stomach || @inspection.esophagus || @inspection.duodenum %>
+<p>
+  <strong>Esófago:</strong>
+  <%= @inspection.esophagus %>
+</p>
+<p>
+  <strong>Estómago:</strong>
+  <%= @inspection.stomach %>
+</p>
+<p>
+  <strong>Duoneno:</strong>
+  <%= @inspection.duodenum %>
+</p>
+<% end %>
+
+<% if @inspection.colonoscopy || @inspection.rectal_examination %>
+<p>
+  <strong>Tacto rectal:</strong>
+  <%= @inspection.rectal_examination %>
+</p>
+<p>
+  <strong>Colonoscopía:</strong>
+  <%= @inspection.colonoscopy %>
+</p>
+<% end %>
+
   <p>
     <strong>Conclusión:</strong>
     <%= @inspection.conclusion %>
   </p>
-
   <p>
     <strong>Diagnostic:</strong>
     <%= @inspection.diagnostic %>
   </p>
 </div>
-<hr>
 
 <% @images.each do |image| %>
-      <div class="pull-right">
-      <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
-      class:"btn btn-sm btn-danger hidden-print",
-        method: :delete%>
-      </div>
-      <div class="text-center">
-      <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
-          style: "max-width:350px;max-height:350px"%>
-      </div>
-      <br>
+  <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
+      style: "max-width:230px;max-height:230px"%>
+  <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
+      class:"btn btn-sm btn-danger hidden-print", method: :delete%>
+
 <% end %>
-<br>
+<br><br>
 <div class="hidden-print">
   <%= form_for([@inspection, @inspection.images.build]) do |f| %>
     <div class="field">
@@ -100,3 +120,4 @@
     <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
   </div>
 </div>
+<br><br>

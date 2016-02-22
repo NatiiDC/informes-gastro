@@ -1,7 +1,85 @@
-
-
 <% @title = "Editando datos"%>
-<%= render 'form' %>
 
-<%= link_to 'Ver', @inspection %> |
-<%= link_to 'Volver', inspections_path %>
+<%= form_for(@inspection) do |f| %>
+  <% if @inspection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inspection.errors.count, "error") %> prohibited this inspection from being saved:</h2>
+
+      <ul>
+      <% @inspection.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <legend class="text-center"><h2> <%= @title %> </h2></legend>
+  <div class="field">
+    <%= f.label :"Fecha" %><br>
+    <%= f.date_select :date, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Estudio" %><br>
+    <%= f.select(:study_of_name, [['VideoEndoscopiaDigestivaAlta', 'VideoEndoscopiaDigestivaAlta'], ['VideoColonoscopia', 'VideoColonoscopia']], required: true ) %>
+  </div>
+  <div class="field">
+    <%= f.label :"Motivo" %><br>
+    <%= f.text_field :reason, role:"textbox", class: "form-control", height:"308", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Tipo de estudio" %><br>
+    <%= f.text_field :study_of_type, class: "form-control", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Informe" %><br>
+    <%= f.text_area :report, class: "form-control", required: true %>
+  </div>
+  <div id="here"></div>
+
+<% if @inspection.stomach || @inspection.esophagus || @inspection.duodenum %>
+  <div class="field">
+    <%= f.label :"Estómago" %><br>
+    <%= f.text_area :stomach, class: "form-control", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Esófago" %><br>
+    <%= f.text_area :esophagus, class: "form-control", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Duodeno" %><br>
+    <%= f.text_area :duodenum, class: "form-control", required: true %>
+  </div>
+<% else %>
+  <div class="field">
+    <%= f.label :"Tacto rectal" %><br>
+    <%= f.text_area :rectal_examination, class: "form-control", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Colonoscopía" %><br>
+    <%= f.text_area :colonoscopy, class: "form-control", required: true %>
+  </div>
+<% end %>
+  <div class="field">
+    <%= f.label :"Conclusión" %><br>
+    <%= f.text_area :conclusion, class: "form-control", required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :"Diagnostico" %><br>
+    <%= f.text_field :diagnostic, class: "form-control"%>
+  </div>
+
+  <div class="field">
+  <% @images.each do |image| %>
+    <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
+        style: "max-width:250px;max-height:250px"%>
+    <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
+          class:"btn btn-sm btn-danger hidden-print", method: :delete%>
+  <% end %>
+  </div>
+
+  <div class="actions form-group">
+    <%= link_to "Cancelar", :back , class:"btn btn-danger" %>
+    <%= f.submit class:"btn btn-primary", value: "Guardar"%>
+  </div>
+  <br><br>
+<% end %>
