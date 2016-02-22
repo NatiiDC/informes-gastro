@@ -21,3 +21,9 @@ Instalar Bundler
 Clonar o descargar el repositorio
 
 Ejecutar `bundle install`
+
+## Ejecución
+
+  Migraciones: `bundle exec rake db:migrate`
+  
+  Datos de prueba: `bundle exec rake db:setup`
