@@ -82,7 +82,6 @@ class InspectionsController < ApplicationController
           :study_of_type,
           :date,
           :reason,
-          :report,
           :conclusion,
           :diagnostic,
           :stomach,
