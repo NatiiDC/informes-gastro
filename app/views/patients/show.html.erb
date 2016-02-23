@@ -5,37 +5,37 @@
   		  <h3><legend class="text-center"> Informaci&oacute;n del paciente </h3></legend>
 
         <p>
-          <strong>Apellido y nombre:</strong>
+          <strong><%= t 'activerecord.attributes.patient.fullname'%>:</strong>
           <%= @patient.lastname %>, <%= @patient.firstname %>
         </p>
         <p>
-          <strong>Documento:</strong>
+          <strong><%= t 'activerecord.attributes.patient.type_document_cd'%>:</strong>
           <%= @patient.type_document_cd %> <%= @patient.document_number %>
         </p>
         <p>
-          <strong>Fecha de nacimiento:</strong>
+          <strong><%= t 'activerecord.attributes.patient.birthdate'%>:</strong>
           <%= @patient.birthdate.strftime "%d-%m-%Y" %>
         </p>
         <p>
-          <strong>Genero:</strong>
-          <%= @patient.gender_cd.capitalize %>
+          <strong><%= t 'activerecord.attributes.patient.gender_cd'%>:</strong>
+          <%= @patient.gender_cd %>
         </p>
         <p>
-          <strong>Nacionalidad:</strong>
+          <strong><%= t 'activerecord.attributes.patient.nationality'%>:</strong>
           <%= @patient.nationality %>
         </p>
         <p>
-          <strong>Obra Social:</strong>
+          <strong><%= t 'activerecord.attributes.patient.obra_social'%>:</strong>
           <%= @patient.obra_social_type %> <%= @patient.obra_social_number %>
         </p>
         <p>
-          <strong>Teléfono:</strong>
+          <strong><%= t 'activerecord.attributes.patient.phone'%>:</strong>
           <%= @patient.phone %>
         </p>
 
         <p>
-          <strong>Observaciones:</strong>
-          <%= @patient.observations.capitalize %>
+          <strong><%= t 'activerecord.attributes.patient.observations'%>:</strong>
+          <%= @patient.observations %>
         </p>
 
         <p>

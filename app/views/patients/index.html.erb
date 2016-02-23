@@ -5,7 +5,6 @@
       <h2 class="text-center remove-margin">Listado de Pacientes</h2>
     </div>
     <div class="pull-right">
-        <!-- <%= link_to 'Ingresar paciente', new_patient_path, class:"btn btn-sm btn-default" %> -->
         <form class="form-inline" method="GET">
             <input type="text" class="form-control" min="3" name="name" placeholder="nombre/apellido">
             <button class="btn btn-sm btn-default" type="submit">Filtrar</button>
@@ -29,6 +28,7 @@
         <td><%= patient.firstname %> <%= patient.lastname %></td>
         <td><%= patient.type_document_cd %> <%= patient.document_number %></td>
         <td>
+          <%= link_to 'Agregar estudio', new_patient_inspection_path(patient.id), class: "btn btn-xs btn-success"  %>
           <%= link_to 'Ver', patient, class:"btn btn-xs btn-info" %>
           <%= link_to 'Editar', edit_patient_path(patient), class:"btn btn-xs btn-info" %>
           <%= link_to 'Eliminar', patient, method: :delete, data: { confirm: 'Está seguro?' }, class:"btn btn-xs btn-danger" %></td>

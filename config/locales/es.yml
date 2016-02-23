@@ -1,0 +1,31 @@
+es:
+  activerecord:
+    model:
+      patient: Paciente
+    attributes:
+      patient:
+        firstname: Nombre
+        lastname: Apellido
+        fullname: Apellido Nombre
+        type_document_cd: Tipo de documento
+        document_number: Número de documento
+        birthdate: Fecha de nacimiento
+        nationality: Nacionalidad
+        gender_cd: Sexo
+        obra_social_type: Tipo de Obra Social
+        obra_social_number: Número de Obra Social
+        obra_social: Obra Social
+        phone: Teléfono
+        observations: Observaciones
+      inspection:
+        study_of_name: Estudio
+        study_of_type: Tipo de estudio
+        date: Fecha
+        reason: Motivo
+        report: Informe
+        conclusion: Conclusión
+        diagnostic: Diagnostico
+        stomach: Estómago
+        esophagus: Esófago
+        duodenum: Duodeno
+        rectal_examination: Tacto Rectal

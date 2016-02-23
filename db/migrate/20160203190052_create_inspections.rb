@@ -5,7 +5,6 @@ class CreateInspections < ActiveRecord::Migration
       t.string :study_of_type
       t.date :date
       t.string :reason
-      t.string :report
       t.string :conclusion
       t.string :diagnostic
       t.string :stomach

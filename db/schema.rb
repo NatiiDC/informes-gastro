@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220004155) do
+ActiveRecord::Schema.define(version: 20160223221641) do
 
   create_table "images", force: :cascade do |t|
-    t.string   "name",          limit: 255,   null: false
-    t.binary   "data",          limit: 65535, null: false
-    t.string   "filename",      limit: 255
-    t.string   "mime_type",     limit: 255
-    t.integer  "inspection_id", limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "name",                 limit: 255, null: false
+    t.string   "capture_file_name",    limit: 255
+    t.string   "capture_content_type", limit: 255
+    t.integer  "capture_file_size",    limit: 4
+    t.datetime "capture_updated_at"
+    t.integer  "inspection_id",        limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "capture",              limit: 255
   end
 
   add_index "images", ["inspection_id"], name: "index_images_on_inspection_id", using: :btree
@@ -30,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160220004155) do
     t.string   "study_of_type",      limit: 255
     t.date     "date"
     t.string   "reason",             limit: 255
-    t.string   "report",             limit: 255
     t.string   "conclusion",         limit: 255
     t.string   "diagnostic",         limit: 255
     t.string   "stomach",            limit: 255

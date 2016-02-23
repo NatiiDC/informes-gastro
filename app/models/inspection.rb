@@ -14,9 +14,6 @@ class Inspection < ActiveRecord::Base
   validates :reason,
     presence: true
 
-  validates :report,
-    presence: true
-
   validates :conclusion,
     presence: true
 
