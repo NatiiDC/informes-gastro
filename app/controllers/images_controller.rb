@@ -4,34 +4,15 @@ class ImagesController < ApplicationController
     @inspection = Inspection.find(params['inspection_id'])
 
     @next = true
-    params["image"]["data"].each do |data|
-      if @next
-        @image = @inspection.images.new(
-        "name" => params["image"]["name"],
-        "data" => data.read,
-        "filename" => data.original_filename,
-        "mime_type" => data.content_type)
-        @next = @image.save
-      else
+    image_params["capture"].each do |capture|
+      @image = @inspection.images.new({"name" => image_params["name"]})
+      @image.capture = capture
+      if ! @image.save
+        @next = false
         break
       end
     end
 
-    # @image = @inspection.images.new(
-    # "name" => params["image"]["name"],
-    # "data" => params["image"]["data"].read,
-    # "filename" => params["image"]["data"].original_filename,
-    # "mime_type" => params["image"]["data"].content_type)
-
-    # @image = @inspection.images.new(params[:image]) do |t|
-    #   if params[:image][:data]
-    #     t.data      = params[:image][:data].read
-    #     t.filename  = params[:image][:data].original_filename
-    #     t.mime_type = params[:image][:data].content_type
-    #   end
-    # end
-
-    # if @image.save
     if @next
       redirect_to :back, notice: 'La/s imagen/es se ha/n guardado'
     else
@@ -51,16 +32,11 @@ class ImagesController < ApplicationController
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def inspection_params
+    def image_params
       params
-        .require(:inspection)
+        .require(:image)
         .permit(
           :name,
-          :data,
-          :filename,
-          :mime_type)
+          {capture: []})
     end
-
-
 end

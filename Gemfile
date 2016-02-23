@@ -7,6 +7,9 @@ gem 'simple_enum', '~> 2.0.0' , require: 'simple_enum/mongoid'
 gem 'kaminari'
 gem 'mysql'
 gem 'mysql2'
+gem 'carrierwave'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'faker', :group => [:development]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

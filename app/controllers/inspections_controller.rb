@@ -5,11 +5,11 @@ class InspectionsController < ApplicationController
     if params["name"].nil? || params["name"].blank?
       @patients = Patient.select(:id,:firstname,:lastname).page params[:page]
     else
-      @name = params['name'].capitalize
+      @name = params['name']
       @patients = Patient
-                    .select(:id,:firstname,:lastname)
-                    .where("firstname LIKE ? OR lastname LIKE ?", %Q{%#{@name}%}, %Q{%#{@name}%})
-                    .order("lastname ASC").page params[:page]
+          .select(:id,:firstname,:lastname)
+          .where("firstname LIKE ? OR lastname LIKE ?", %Q{%#{@name}%}, %Q{%#{@name}%})
+          .order("lastname ASC").page params[:page]
 
     end
   end

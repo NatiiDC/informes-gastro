@@ -1,10 +1,8 @@
 class Image < ActiveRecord::Base
 
-  belongs_to :inspection
+  mount_uploader :capture, CaptureUploader
 
   validates :name,
-    presence: true
-  validates :data,
     presence: true
 
 end

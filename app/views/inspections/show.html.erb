@@ -11,7 +11,7 @@
 <hr>
 <div class="container-fluid">
   <div class="pull-right">
-    <strong>Fecha:</strong>
+    <strong><%= t 'activerecord.attributes.inspection.date'%>:</strong>
     <%= @inspection.date %>
   </div>
   <p>
@@ -50,11 +50,6 @@
     <%=@inspection.study_of_type %>
   </p>
 
-  <p>
-    <strong>Informe:</strong>
-    <%= @inspection.report %>
-  </p>
-
 <% if @inspection.stomach || @inspection.esophagus || @inspection.duodenum %>
 <p>
   <strong>Esófago:</strong>
@@ -91,56 +86,32 @@
   </p>
 
   <% @images.each do |image| %>
-    <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
-        style: "max-width:230px;max-height:230px"%>
-    <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
-        class:"btn btn-sm btn-danger hidden-print", method: :delete%>
+    <%= image_tag image.capture.url, style: "max-width:230px;max-height:230px" %>
   <% end %>
+  <br><br>
+  <div class="hidden-print">
+    <%= form_for([@inspection, @inspection.images.build], html: { multipart: true }) do |f| %>
+      <div class="field">
+        <%= f.label :"Imagenes" %><br>
+        <%= f.file_field :capture, multiple: true%>
+      </div>
+      <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}/#{Time.new.strftime("%Y/%m/%d-%H:%Hhs")}}%>
+      <div class="actions form-group">
+        <%= f.submit class:"btn btn-primary", value: "Guardar"%>
+      </div>
+    <% end %>
+  </div>
 </div>
-<<<<<<< HEAD
-<hr>
-<!--
-<form class="new_image" id="new_image" action="/inspections/<%=%Q{#{@inspection.id}}%>" accept-charset="UTF-8" method="post">
-  <div class="form-group">
-    <input name="utf8" type="hidden" value="✓">
-    <label> Imágenes </label>
-    <input type="file" id="image" name="image" multiple="true" value="">
-  </div>
-  <div class="form-group">
-    <input type="submit" name="commit" value="Guardar" class="btn btn-primary">
-  </div>
-</form> -->
 
-<hr>
-<div class="pull-left">
-  <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
-  <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
-              method: :delete, data: { confirm: '¿Estás seguro?' } %>
-</div>
-<div class="pull-right">
-  <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
-=======
-<br><br>
-<div class="hidden-print">
-  <%= form_for([@inspection, @inspection.images.build]) do |f| %>
-    <div class="field">
-      <%= f.label :"Imagenes" %><br>
-      <%= f.file_field :data, multiple: true, class: "form-control"%>
-    </div>
-    <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}_#{Time.new.strftime("%d/%m/%Y-%H:%Hhs}")}}%>
-    <div class="actions form-group">
-      <%= f.submit class:"btn btn-primary", value: "Guardar"%>
-    </div>
-  <% end %>
   <hr>
-  <div class="pull-left">
-    <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
-    <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
-                method: :delete, data: { confirm: '¿Estás seguro?' } %>
+  <div class="hidden-print">
+    <div class="pull-left">
+      <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
+      <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
+                  method: :delete, data: { confirm: '¿Estás seguro?' } %>
+    </div>
+    <div class="pull-right">
+      <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
+    </div>
   </div>
-  <div class="pull-right">
-    <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
-  </div>
->>>>>>> master
-</div>
 <br><br>

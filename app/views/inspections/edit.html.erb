@@ -30,10 +30,6 @@
     <%= f.label :"Tipo de estudio" %><br>
     <%= f.text_field :study_of_type, class: "form-control", required: true %>
   </div>
-  <div class="field">
-    <%= f.label :"Informe" %><br>
-    <%= f.text_area :report, class: "form-control", required: true %>
-  </div>
   <div id="here"></div>
 
 <% if @inspection.stomach || @inspection.esophagus || @inspection.duodenum %>
@@ -68,18 +64,19 @@
     <%= f.text_field :diagnostic, class: "form-control"%>
   </div>
 
+  <br><br>
   <div class="field">
   <% @images.each do |image| %>
-    <%= image_tag serve_inspection_image_path(@inspection.id, image.id),
-        style: "max-width:250px;max-height:250px"%>
+    <%= image_tag image.capture.url, style: "max-width:230px;max-height:230px" %>
     <%= link_to 'Eliminar', inspection_image_path(@inspection.id, image.id),
           class:"btn btn-sm btn-danger hidden-print", method: :delete%>
   <% end %>
   </div>
 
+  <br><br>
   <div class="actions form-group">
     <%= link_to "Cancelar", :back , class:"btn btn-danger" %>
     <%= f.submit class:"btn btn-primary", value: "Guardar"%>
   </div>
-  <br><br>
+  <br><br><br><br>
 <% end %>
