@@ -11,40 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160203190446) do
+=======
+ActiveRecord::Schema.define(version: 20160220004155) do
 
-  create_table "inspections", force: :cascade do |t|
-    t.string   "study_of_name"
-    t.string   "study_of_type"
-    t.date     "date"
-    t.string   "reason"
-    t.string   "report"
-    t.string   "conclusion"
-    t.string   "diagnostic"
-    t.string   "stomach"
-    t.string   "esophagus"
-    t.string   "duodenum"
-    t.integer  "patient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "images", force: :cascade do |t|
+    t.string   "name",          limit: 255,   null: false
+    t.binary   "data",          limit: 65535, null: false
+    t.string   "filename",      limit: 255
+    t.string   "mime_type",     limit: 255
+    t.integer  "inspection_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  add_index "inspections", ["patient_id"], name: "index_inspections_on_patient_id"
+  add_index "images", ["inspection_id"], name: "index_images_on_inspection_id", using: :btree
+>>>>>>> master
+
+  create_table "inspections", force: :cascade do |t|
+    t.string   "study_of_name",      limit: 255
+    t.string   "study_of_type",      limit: 255
+    t.date     "date"
+    t.string   "reason",             limit: 255
+    t.string   "report",             limit: 255
+    t.string   "conclusion",         limit: 255
+    t.string   "diagnostic",         limit: 255
+    t.string   "stomach",            limit: 255
+    t.string   "esophagus",          limit: 255
+    t.string   "duodenum",           limit: 255
+    t.string   "colonoscopy",        limit: 255
+    t.string   "rectal_examination", limit: 255
+    t.integer  "patient_id",         limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "inspections", ["patient_id"], name: "index_inspections_on_patient_id", using: :btree
 
   create_table "patients", force: :cascade do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "type_document_cd"
-    t.integer  "document_number"
+    t.string   "firstname",          limit: 255
+    t.string   "lastname",           limit: 255
+    t.string   "type_document_cd",   limit: 255
+    t.integer  "document_number",    limit: 4
     t.date     "birthdate"
-    t.string   "nationality"
-    t.string   "gender_cd"
-    t.string   "obra_social_type"
-    t.string   "obra_social_number"
-    t.string   "phone"
-    t.string   "observations"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "nationality",        limit: 255
+    t.string   "gender_cd",          limit: 255
+    t.string   "obra_social_type",   limit: 255
+    t.string   "obra_social_number", limit: 255
+    t.string   "phone",              limit: 255
+    t.string   "observations",       limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
 end

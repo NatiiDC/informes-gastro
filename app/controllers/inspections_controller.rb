@@ -2,7 +2,16 @@ class InspectionsController < ApplicationController
   before_action :set_inspection, only: [:show, :edit, :update, :destroy]
 
   def patient_choice
-    @patients = Patient.all
+    if params["name"].nil? || params["name"].blank?
+      @patients = Patient.select(:id,:firstname,:lastname).page params[:page]
+    else
+      @name = params['name'].capitalize
+      @patients = Patient
+                    .select(:id,:firstname,:lastname)
+                    .where("firstname LIKE ? OR lastname LIKE ?", %Q{%#{@name}%}, %Q{%#{@name}%})
+                    .order("lastname ASC").page params[:page]
+
+    end
   end
 
   def new_image
@@ -17,7 +26,7 @@ class InspectionsController < ApplicationController
 
   # GET /inspections/1
   def show
-
+    @images = @inspection.images
     @patient = @inspection.patient
   end
 
@@ -29,6 +38,7 @@ class InspectionsController < ApplicationController
 
   # GET /inspections/1/edit
   def edit
+    @images = @inspection.images
   end
 
   # POST /inspections
@@ -77,6 +87,8 @@ class InspectionsController < ApplicationController
           :diagnostic,
           :stomach,
           :esophagus,
-          :duodenum)
+          :duodenum,
+          :colonoscopy,
+          :rectal_examination)
     end
 end

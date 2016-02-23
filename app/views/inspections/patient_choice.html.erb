@@ -1,10 +1,35 @@
-<p>
-  Pagina en proceso :)
-</p>
-<p>
-  Aqui hay dos opciones, o crear un nuevo paciente o buscar uno.
-</p>
-
-<div class="text-center">
-  <%= link_to 'Paciente nuevo', new_patient_path, class:"btn btn-lg btn-info" %>
+<br>
+<%= link_to 'Paciente nuevo', new_patient_path, class:"btn btn-lg btn-info" %>
+<hr>
+<div class="container-fluid">
+  <div class="pull-left">
+    <form class="form-inline" method="GET">
+        <input type="text" class="form-control" min="3" name="name" placeholder="nombre/apellido">
+        <button class="btn btn-sm btn-default" type="submit">Filtrar</button>
+    </form>
+  </div>
+</div>
+<br>
+<div class="col-md-7 col-md-offset-0">
+  <table class="table table-striped table-hover table-condensed text-center">
+    <thead>
+      <tr>
+        <th class="text-center">Nombre Apellido</th>
+        <th class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @patients.each do |patient| %>
+        <tr>
+          <td><%= patient.firstname %> <%= patient.lastname %></td>
+          <td>
+            <%= link_to 'Agregar estudio', new_patient_inspection_path(patient.id), class: "btn btn-xs btn-success"  %>
+            <%= link_to 'Historial de estudios', patient_inspections_path(patient.id), class: "btn btn-xs btn-default"  %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="pull-left">
+  <%= paginate @patients %>
 </div>

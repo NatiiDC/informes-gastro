@@ -5,8 +5,8 @@ class Patient < ActiveRecord::Base
 
   has_many :inspections
 
-  paginates_per 20
-  max_paginates_per 50
+  paginates_per 100
+  max_paginates_per 200
 
   validates :firstname,
     presence: true,

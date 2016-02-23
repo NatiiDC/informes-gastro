@@ -8,7 +8,10 @@ class PatientsController < ApplicationController
       @patients = Patient.all.order("lastname ASC").page params[:page]
     else
       @name = params['name'].capitalize
-      @patients = Patient.where("firstname = ? OR lastname = ?", @name, @name).order("lastname DESC").page params[:page]
+      @patients = Patient
+            .where("firstname LIKE ? OR lastname LIKE ?", %Q{%#{@name}%}, %Q{%#{@name}%})
+            .order("lastname ASC")
+            .page params[:page]
     end
   end
 
