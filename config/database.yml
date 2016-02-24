@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: naty20
+  password: root
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -51,4 +51,4 @@ production:
   <<: *default
   database: gastro_production
   username: gastro
-  password: <%= ENV['GASTRO_DATABASE_PASSWORD'] %>
+  password: gastrogastro
