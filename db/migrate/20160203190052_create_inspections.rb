@@ -5,13 +5,13 @@ class CreateInspections < ActiveRecord::Migration
       t.string :study_of_type
       t.date :date
       t.string :reason
-      t.string :conclusion
+      t.text :conclusion
       t.string :diagnostic
-      t.string :stomach
-      t.string :esophagus
-      t.string :duodenum
-      t.string :colonoscopy
-      t.string :rectal_examination
+      t.text :stomach
+      t.text :esophagus
+      t.text :duodenum
+      t.text :colonoscopy
+      t.text :rectal_examination
 
       t.references :patient, index: true
 

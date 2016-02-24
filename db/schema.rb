@@ -28,16 +28,16 @@ ActiveRecord::Schema.define(version: 20160223221641) do
     t.string   "study_of_type",      limit: 255
     t.date     "date"
     t.string   "reason",             limit: 255
-    t.string   "conclusion",         limit: 255
+    t.text     "conclusion",         limit: 65535
     t.string   "diagnostic",         limit: 255
-    t.string   "stomach",            limit: 255
-    t.string   "esophagus",          limit: 255
-    t.string   "duodenum",           limit: 255
-    t.string   "colonoscopy",        limit: 255
-    t.string   "rectal_examination", limit: 255
+    t.text     "stomach",            limit: 65535
+    t.text     "esophagus",          limit: 65535
+    t.text     "duodenum",           limit: 65535
+    t.text     "colonoscopy",        limit: 65535
+    t.text     "rectal_examination", limit: 65535
     t.integer  "patient_id",         limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "inspections", ["patient_id"], name: "index_inspections_on_patient_id", using: :btree
