@@ -4,6 +4,11 @@ Es un sistema de informes de **endoscopía** y **colonoscopia**. Se guardan los 
 
 Todavía está en desarrollo el sistema
 
+#### Dependencias externas
+
+* Node.js
+* MySQL
+
 ## Instalación
 
 Instalar Ruby
@@ -18,9 +23,10 @@ Clonar o descargar el repositorio
 
 Ejecutar `bundle install`
 
-
 ## Ejecución
 
+  Creación de la BD: `bundle exec rake db:create`
+  
   Migraciones: `bundle exec rake db:migrate`
   
   Datos de prueba: `bundle exec rake db:setup`
