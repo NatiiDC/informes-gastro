@@ -4,10 +4,6 @@ Es un sistema de informes de **endoscopía** y **colonoscopia**. Se guardan los 
 
 Todavía está en desarrollo el sistema
 
-## Herramientas
-
-El framework utilizado es Rails.
-
 ## Instalación
 
 Instalar Ruby
@@ -21,6 +17,7 @@ Instalar Bundler
 Clonar o descargar el repositorio
 
 Ejecutar `bundle install`
+
 
 ## Ejecución
 
