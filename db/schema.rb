@@ -14,15 +14,11 @@
 ActiveRecord::Schema.define(version: 20160223221641) do
 
   create_table "images", force: :cascade do |t|
-    t.string   "name",                 limit: 255, null: false
-    t.string   "capture_file_name",    limit: 255
-    t.string   "capture_content_type", limit: 255
-    t.integer  "capture_file_size",    limit: 4
-    t.datetime "capture_updated_at"
-    t.integer  "inspection_id",        limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "capture",              limit: 255
+    t.string   "name",          limit: 255, null: false
+    t.integer  "inspection_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "capture",       limit: 255
   end
 
   add_index "images", ["inspection_id"], name: "index_images_on_inspection_id", using: :btree
