@@ -6,7 +6,9 @@ es:
       patient:
         firstname: Nombre
         lastname: Apellido
-        fullname: Apellido Nombre
+        fullname: Apellido, Nombre
+        age: Edad
+        document: Documento
         type_document_cd: Tipo de documento
         document_number: Número de documento
         birthdate: Fecha de nacimiento
