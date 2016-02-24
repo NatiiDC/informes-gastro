@@ -14,14 +14,14 @@
   <table class="table table-striped table-hover table-condensed text-center">
     <thead>
       <tr>
-        <th class="text-center">Nombre Apellido</th>
+        <th class="text-center"><%= t 'activerecord.attributes.patient.fullname'%></th>
         <th class="text-center"></th>
       </tr>
     </thead>
     <tbody>
       <% @patients.each do |patient| %>
         <tr>
-          <td><%= patient.firstname %> <%= patient.lastname %></td>
+          <td><%= patient.lastname %> <%= patient.firstname %></td>
           <td>
             <%= link_to 'Agregar estudio', new_patient_inspection_path(patient.id), class: "btn btn-xs btn-success"  %>
             <%= link_to 'Historial de estudios', patient_inspections_path(patient.id), class: "btn btn-xs btn-default"  %>

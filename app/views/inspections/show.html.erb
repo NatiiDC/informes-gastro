@@ -15,21 +15,22 @@
     <%= @inspection.date %>
   </div>
   <p>
-    <strong>Estudio:</strong>
+    <strong><%= t 'activerecord.attributes.inspection.study_of_name'%>:</strong>
     <%= @inspection.study_of_name %>
   </p>
   <p>
     <u><strong>Datos del paciente</strong></u>
       <div class="pull-right">
-        <strong>Edad </strong><%= age(@patient.birthdate)%>
+        <strong><%= t 'activerecord.attributes.patient.age'%>:</strong>
+        <%= age(@patient.birthdate)%>
       </div>
-      <strong>Apellido y nombre</strong><t>
+      <strong><%= t 'activerecord.attributes.patient.fullname'%>:</strong>
       <%= @patient.lastname %> <%= @patient.firstname %>
       <br>
-      <strong>Documento</strong>
+      <strong><%= t 'activerecord.attributes.patient.document'%>:</strong>
       <%= @patient.type_document_cd %> <%= @patient.document_number %>
       <br>
-      <strong>Obra Social</strong>
+      <strong><%= t 'activerecord.attributes.patient.obra_social'%>:</strong>
       <% if (@patient.obra_social_type.nil? || @patient.obra_social_number.nil?)  %>
         [Sin Obra Social]
       <% else %>
@@ -41,47 +42,42 @@
 <br>
 <div class="container-fluid">
   <p>
-    <strong>Motivo de consulta:</strong>
+    <strong><%= t 'activerecord.attributes.inspection.reason'%>:</strong>
     <%= @inspection.reason %>
   </p>
-
   <p>
-    <strong>Tipo de Estudio:</strong>
+    <strong><%= t 'activerecord.attributes.inspection.study_of_type'%>:</strong>
     <%=@inspection.study_of_type %>
   </p>
-
-<% if @inspection.stomach || @inspection.esophagus || @inspection.duodenum %>
-<p>
-  <strong>Esófago:</strong>
-  <%= @inspection.esophagus %>
-</p>
-<p>
-  <strong>Estómago:</strong>
-  <%= @inspection.stomach %>
-</p>
-<p>
-  <strong>Duoneno:</strong>
-  <%= @inspection.duodenum %>
-</p>
-<% end %>
-
-<% if @inspection.colonoscopy || @inspection.rectal_examination %>
-<p>
-  <strong>Tacto rectal:</strong>
-  <%= @inspection.rectal_examination %>
-</p>
-<p>
-  <strong>Colonoscopía:</strong>
-  <%= @inspection.colonoscopy %>
-</p>
-<% end %>
-
+  <% if @inspection.stomach || @inspection.esophagus || @inspection.duodenum %>
+    <p>
+      <strong><%= t 'activerecord.attributes.inspection.esophagus'%>:</strong>
+      <%= @inspection.esophagus %>
+    </p>
+    <p>
+      <strong><%= t 'activerecord.attributes.inspection.stomach'%>:</strong>
+      <%= @inspection.stomach %>
+    </p>
+    <p>
+      <strong><%= t 'activerecord.attributes.inspection.duodenum'%>:</strong>
+      <%= @inspection.duodenum %>
+    </p>
+  <% else %>
+    <p>
+      <strong><%= t 'activerecord.attributes.inspection.rectal_examination'%>:</strong>
+      <%= @inspection.rectal_examination %>
+    </p>
+    <p>
+      <strong><%= t 'activerecord.attributes.inspection.colonoscopy'%>:</strong>
+      <%= @inspection.colonoscopy %>
+    </p>
+  <% end %>
   <p>
-    <strong>Conclusión:</strong>
+    <strong><%= t 'activerecord.attributes.inspection.conclusion'%>:</strong>
     <%= @inspection.conclusion %>
   </p>
   <p>
-    <strong>Diagnostico:</strong>
+    <strong><%= t 'activerecord.attributes.inspection.diagnostic'%>:</strong>
     <%= @inspection.diagnostic %>
   </p>
 
@@ -103,15 +99,15 @@
   </div>
 </div>
 
-  <hr>
-  <div class="hidden-print">
-    <div class="pull-left">
-      <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
-      <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
-                  method: :delete, data: { confirm: '¿Estás seguro?' } %>
-    </div>
-    <div class="pull-right">
-      <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
-    </div>
+<hr>
+<div class="hidden-print">
+  <div class="pull-left">
+    <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
+    <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
+                method: :delete, data: { confirm: '¿Estás seguro?' } %>
   </div>
+  <div class="pull-right">
+    <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
+  </div>
+</div>
 <br><br>
