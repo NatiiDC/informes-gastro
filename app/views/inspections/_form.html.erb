@@ -1,4 +1,4 @@
-<% simple_form_for(([@patient, @patient.inspections.build]), wrapper: :standar,
+<%= simple_form_for(([@patient, @patient.inspections.build]), wrapper: :standar,
         wrapper_mappings: {
           check_boxes: :horizontal_radio_and_checkboxes,
           radio_buttons: :horizontal_radio_and_checkboxes,
@@ -13,7 +13,7 @@
     </div>
     <fieldset>
     <div class="form-inputs">
-      <%= f.input :date, as: 'date'%>
+      <%= f.input :date, as: :date, html5: true, input_html: { value: Date.today }%>
       <%= f.input :study_of_name, include_blank: false, as: :select,
             collection:[['VideoEndoscopiaDigestivaAlta', 'VideoEndoscopiaDigestivaAlta'], ['VideoColonoscopia', 'VideoColonoscopia']]%>
       <%= f.input :reason %>
