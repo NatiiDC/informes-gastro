@@ -1,68 +1,50 @@
-<%= form_for([@patient, @patient.inspections.build]) do |f| %>
-  <% if @inspection.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@inspection.errors.count, "error") %> prohibited this inspection from being saved:</h2>
-
-      <ul>
-      <% @inspection.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<% simple_form_for(([@patient, @patient.inspections.build]), wrapper: :standar,
+        wrapper_mappings: {
+          check_boxes: :horizontal_radio_and_checkboxes,
+          radio_buttons: :horizontal_radio_and_checkboxes,
+          file: :horizontal_file_input,
+          boolean: :horizontal_boolean
+        }) do |f| %>
+  <%= f.error_notification %>
+    <legend class="text-center"><h2> <%= @title %> </h2></legend>
+    <div class="form-group">
+      <button id="btn1" class="btn btn-default btn-ml" >VEDA</button>
+      <button id="btn2" class="btn btn-default btn-ml">VCC</button>
     </div>
-  <% end %>
-
-  <legend class="text-center"><h2> <%= @title %> </h2></legend>
-  <div class="field">
-    <button id="btn1" class="btn btn-default btn-ml" >VEDA</button>
-    <button id="btn2" class="btn btn-default btn-ml">VCC</button>
-  </div>
-  <div class="field">
-    <%= f.label :"Fecha" %><br>
-    <%= f.date_select :date, required: true %>
-  </div>
-  <div class="field">
-    <%= f.label :"Estudio" %><br>
-    <%= f.select(:study_of_name, [['VideoEndoscopiaDigestivaAlta', 'VideoEndoscopiaDigestivaAlta'], ['VideoColonoscopia', 'VideoColonoscopia']], required: true ) %>
-  </div>
-  <div class="field">
-    <%= f.label :"Motivo" %><br>
-    <%= f.text_field :reason, role:"textbox", class: "form-control", height:"308", required: true %>
-  </div>
-  <div class="field">
-    <%= f.label :"Tipo de estudio" %><br>
-    <%= f.text_field :study_of_type, class: "form-control", required: true %>
-  </div>
-  <div id="here"></div>
-  <div class="field">
-    <%= f.label :"Conclusión" %><br>
-    <%= f.text_area :conclusion, class: "form-control", required: true %>
-  </div>
-  <div class="field">
-    <%= f.label :"Diagnostico" %><br>
-    <%= f.text_field :diagnostic, class: "form-control"%>
-  </div>
-  <div class="actions form-group">
-    <%= link_to "Cancelar", :back , class:"btn btn-danger" %>
-    <%= f.submit class:"btn btn-primary", value: "Guardar"%>
-  </div>
-  <br><br>
+    <fieldset>
+    <div class="form-inputs">
+      <%= f.input :date, as: 'date'%>
+      <%= f.input :study_of_name, include_blank: false, as: :select,
+            collection:[['VideoEndoscopiaDigestivaAlta', 'VideoEndoscopiaDigestivaAlta'], ['VideoColonoscopia', 'VideoColonoscopia']]%>
+      <%= f.input :reason %>
+      <%= f.input :study_of_type %>
+      <div id="here"></div>
+      <%= f.input :conclusion %>
+      <%= f.input :diagnostic %>
+    </div>
+    <div class="actions form-group">
+      <%= link_to "Cancelar", :back , class:"btn btn-danger" %>
+      <%= f.button :submit, class:"btn btn-primary"%>
+    </div>
+    <br>
+  </fieldset>
 <% end %>
 
 <script>
 $(document).ready(function(){
   $("#btn1").click(function(){
       $("#here")
-      .append('<div class="field"><label for="inspection_esophagus">Esófago</label><br><input role="textbox" class="form-control" required="required" type="text" name="inspection[esophagus]" id="inspection_esophagus"></div>')
-      .append('<div class="field"><label for="inspection_stomach">Estómago</label><br><input role="textbox" class="form-control" required="required" type="text" name="inspection[stomach]" id="inspection_stomach"></div>')
-      .append('<div class="field"><label for="inspection_duodenum">Duodeno</label><br><input role="textbox" class="form-control" required="required" type="text" name="inspection[duodenum]" id="inspection_duodenum"></div>');
+      .append('<div class="form-group"><label class="col-md-4 control-label" for="inspection_esophagus">Esófago</label><br><textarea class="text required form-control" required="required" aria-required="true" maxlength="255" name="inspection[esophagus]" id="inspection_esophagus"></textarea></div>')
+      .append('<div class="form-group"><label class="col-md-4 control-label" for="inspection_stomach">Estómago</label><br><textarea class="text required form-control" required="required" aria-required="true" maxlength="255" name="inspection[stomach]" id="inspection_stomach"></textarea></div>')
+      .append('<div class="form-group"><label class="col-md-4 control-label" for="inspection_duodenum">Duodeno</label><br><textarea class="text required form-control" required="required" aria-required="true" maxlength="255" name="inspection[duodenum]" id="inspection_duodenum"></textarea></div>');
       $("#btn1").remove();
       $("#btn2").remove();
   });
 
   $("#btn2").click(function(){
       $("#here")
-      .append('<div class="field"><label for="inspection_rectal_examination">Tacto rectal</label><br><input role="textbox" class="form-control" required="required" type="text" name="inspection[rectal_examination]" id="inspection_rectal_examination"></div>')
-      .append('<div class="field"><label for="inspection_colonoscopy">Colonospía</label><br><input role="textbox" class="form-control" required="required" type="text" name="inspection[colonoscopy]" id="inspection_colonoscopy"></div>');
+      .append('<div class="form-group"><label class="col-md-4 control-label" for="inspection_rectal_examination">Tacto rectal</label><br><textarea class="text required form-control" required="required" aria-required="true" maxlength="255" name="inspection[rectal_examination]" id="inspection_rectal_examination"></textarea></div>')
+      .append('<div class="form-group"><label class="col-md-4 control-label" for="inspection_colonoscopy">Colonospía</label><br><textarea class="text required form-control" required="required" aria-required="true" maxlength="255" name="inspection[colonoscopy]" id="inspection_colonoscopy"></textarea></div>');
       $("#btn1").remove();
       $("#btn2").remove();
   });
