@@ -5,8 +5,15 @@
     <img src="/caratula.png" alt="gastroenterologia" class="img-rounded" height="60%" width="60%">
   </div>
 </div>
-<div class="pull-right">
-  <%= link_to "Imprimir", '#', class:"btn btn-default hidden-print", onclick: "printpage()" %>
+<div class="container-fluid hidden-print">
+  <div class="pull-right">
+    <%= link_to "Imprimir", '#', class:"btn btn-default", onclick: "printpage()" %>
+  </div>
+  <div class="pull-left">
+    <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-info"  %>
+    <%= link_to 'Eliminar', inspection_path, class:"btn btn-danger",
+                method: :delete, data: { confirm: '¿Estás seguro?' } %>
+  </div>
 </div>
 <hr>
 <div class="container-fluid">
@@ -76,10 +83,12 @@
     <strong><%= t 'activerecord.attributes.inspection.conclusion'%>:</strong>
     <%= @inspection.conclusion %>
   </p>
-  <p>
-    <strong><%= t 'activerecord.attributes.inspection.diagnostic'%>:</strong>
-    <%= @inspection.diagnostic %>
-  </p>
+  <% if ! @inspection.diagnostic.blank? %>
+    <p>
+      <strong><%= t 'activerecord.attributes.inspection.diagnostic'%>:</strong>
+      <%= @inspection.diagnostic %>
+    </p>
+  <% end %>
 
   <% @images.each do |image| %>
     <%= image_tag image.capture.url, style: "max-width:230px;max-height:230px" %>
@@ -99,15 +108,10 @@
   </div>
 </div>
 
-<hr>
 <div class="hidden-print">
-  <div class="pull-left">
-    <%= link_to 'Editar', edit_inspection_path(@inspection), class: "btn btn-sm btn-info"  %>
-    <%= link_to 'Eliminar', inspection_path, class:"btn btn-sm btn-danger",
-                method: :delete, data: { confirm: '¿Estás seguro?' } %>
-  </div>
+<hr>
   <div class="pull-right">
-    <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-sm btn-default" %>
+    <%= link_to 'Volver', patient_inspections_path(@patient), class: "btn btn-default" %>
   </div>
+  <br><br><br><br>
 </div>
-<br><br>
