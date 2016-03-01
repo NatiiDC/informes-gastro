@@ -12,3 +12,6 @@ log/*
 !log/.keep
 tmp
 .env
+
+*.bat
+.vagrant
