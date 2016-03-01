@@ -4,9 +4,10 @@ Es un sistema de informes de **endoscopía** y **colonoscopia**. Se guardan los 
 
 Todavía está en desarrollo el sistema
 
-## Herramientas
+#### Dependencias externas
 
-El framework utilizado es Rails.
+* Node.js
+* MySQL
 
 ## Instalación
 
@@ -24,6 +25,8 @@ Ejecutar `bundle install`
 
 ## Ejecución
 
+  Creación de la BD: `bundle exec rake db:create`
+  
   Migraciones: `bundle exec rake db:migrate`
   
   Datos de prueba: `bundle exec rake db:setup`
