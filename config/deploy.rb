@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'sistema-informes'
-set :repo_url, 'git@github.com:ncuesta/informes-gastro.git'
+set :repo_url, 'git@github.com:NatiiDC/informes-gastro.git'
 set :branch, 'mode-production'
 
 # Rbenv options
