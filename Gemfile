@@ -39,10 +39,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 gem 'unicorn'
 
+gem 'foreman'
+
 # Use Capistrano for deployment
 group :development do
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-foreman'
 end
 
 group :development, :test do
