@@ -89,7 +89,9 @@ Vagrant.configure(2) do |config|
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password #{database_password}'
     sudo apt-get install -y mysql-server libmysqlclient-dev nodejs
 
-    mysqladmin -p#{database_password} create #{database_name}
+    if ! mysql -uroot -p#{database_password} -e 'use #{database_name}'; then
+      mysqladmin -p#{database_password} create #{database_name}
+    fi
     mkdir -p #{app_shared_path}/config
     sudo chown -R #{user} #{app_path}
     sudo mkdir -p #{upstart_path}
@@ -109,6 +111,8 @@ YML
     cat > #{app_shared_path}/.env << ENV
 SECRET_KEY_BASE="#{secret_key_base}"
 RAILS_ENV=production
+HOME=/home/vagrant
+PATH=/home/vagrant/.rbenv/shims:/home/vagrant/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV
   SHELL
 end

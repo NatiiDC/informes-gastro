@@ -1,3 +1,5 @@
+set :default_environment, { 'PATH' => '/home/vagrant/.rbenv/shims:/home/vagrant/.rbenv/bin:$PATH' }
+
 ip_from_vagrantfile = File.read('Vagrantfile').scan(/ip: ["']([\d\.]+)["']/).flatten.first
 vagrant_private_key = '.vagrant/machines/default/virtualbox/private_key'
 
