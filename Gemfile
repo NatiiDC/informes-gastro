@@ -43,6 +43,8 @@ gem 'unicorn'
 group :development do
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-foreman'
 end
 
 group :development, :test do

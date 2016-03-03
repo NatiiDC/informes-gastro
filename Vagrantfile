@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "TTPS-Ruby"
+    vb.name = "TTPS-Ruby-Aparicio"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
@@ -56,9 +56,20 @@ Vagrant.configure(2) do |config|
   home = "/home/#{user}"
   rbenv_path = "#{home}/.rbenv"
   profile_path = "#{home}/.bashrc"
-  ruby_version = '2.2.3'
+  ruby_version = '2.3.0'
   rbenv_abs_path = "#{rbenv_path}/bin/rbenv"
   gem_abs_path = "#{rbenv_path}/shims/gem"
+  app_name = "sistema-informes"
+  app_path = "#{home}/application"
+  app_shared_path = "#{app_path}/shared"
+  upstart_path = "/etc/init/#{app_name}"
+
+  database_name = "informes_gastro"
+  database_username = "root"
+  database_password = "naty20"
+
+  secret_key_base = "32a2c7298e68642ab7f60aed34fa96e2376b7dc8bc3197c5f1d870adc618a9e64747cba73327551a3b5ec75ea113ee3d9405cd06b18bac209b8b78bea9ba22d6"
+
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
     sudo apt-get install -y git autoconf bison build-essential lib{ssl,yaml,sqlite3}-dev libreadline6{,-dev} zlib1g{,-dev}
@@ -74,9 +85,30 @@ Vagrant.configure(2) do |config|
     chown -R #{user}:#{user} #{rbenv_path}
     sudo -i -H -u #{user} /bin/bash -lc '#{rbenv_abs_path} install -s #{ruby_version} && #{rbenv_abs_path} global #{ruby_version} && #{gem_abs_path} update --system && #{gem_abs_path} install bundler'
 
-    sudo apt-get install -y mysql-server
-    sudo apt-get install -y libmysqlclient-dev
-    sudo apt-get install -y nodejs
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password #{database_password}'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password #{database_password}'
+    sudo apt-get install -y mysql-server libmysqlclient-dev nodejs
 
+    mysqladmin -p#{database_password} create #{database_name}
+    mkdir -p #{app_shared_path}/config
+    sudo chown -R #{user} #{app_path}
+    sudo mkdir -p #{upstart_path}
+    sudo chown -R #{user} #{upstart_path}
+
+    cat > #{app_shared_path}/config/database.yml << YML
+production:
+  adapter: mysql2
+  encoding: utf8
+  pool: 10
+  database: #{database_name}
+  username: #{database_username}
+  password: #{database_password}
+  socket: /var/run/mysqld/mysqld.sock
+YML
+
+    cat > #{app_shared_path}/.env << ENV
+SECRET_KEY_BASE="#{secret_key_base}"
+RAILS_ENV=production
+ENV
   SHELL
 end
