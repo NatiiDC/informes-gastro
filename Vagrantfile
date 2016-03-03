@@ -89,9 +89,7 @@ Vagrant.configure(2) do |config|
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password #{database_password}'
     sudo apt-get install -y mysql-server libmysqlclient-dev nodejs
 
-    if ! mysql -uroot -p#{database_password} -e 'use #{database_name}'; then
-      mysqladmin -p#{database_password} create #{database_name}
-    fi
+    mysql -uroot -p#{database_password} -e 'create database if not exists #{database_name}'
     mkdir -p #{app_shared_path}/config
     sudo chown -R #{user} #{app_path}
     sudo mkdir -p #{upstart_path}
