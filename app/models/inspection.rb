@@ -3,7 +3,8 @@ class Inspection < ActiveRecord::Base
   has_many :images
 
   validates :study_of_name,
-    presence: true
+    presence: true,
+    inclusion: { in: %w(VideoEndoscopiaDigestivaAlta VideoEndoscopiaDigestivaAlta), message: "El estudio %{value} no es valido" }
 
   validates :study_of_type,
     presence: true

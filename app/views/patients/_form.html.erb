@@ -1,4 +1,4 @@
-<%= form_for(@patient) do |f| %>
+<%= simple_form_for(@patient, wrapper: :standar) do |f| %>
   <% if @patient.errors.any? %>
     <div class="container container-fluid">
       <div id="error_explanation">
@@ -13,51 +13,21 @@
   <% end %>
   <fieldset>
     <legend class="text-center"><h2> <%= @title %> </h2></legend>
-    <div class="form-group">
-      <%= f.label :"Nombre/s", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :firstname, class: "form-control", required: true %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Apellido/s", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :lastname, class: "form-control", required: true  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Tipo De Documento", class: "col-md-4 control-label" %>
-      <%= f.select(:type_document_cd, [['DNI', 'DNI'], ['CI', 'CI'], ['LD', 'LD']], class:"form-control", required: true ) %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Número de documento", class: "col-md-4 control-label" %><br>
-      <%= f.number_field :document_number, class: "form-control", min: "800000", max: "99999999",  required: true %>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :"Fecha de nacimiento", class: "col-md-4 control-label" %><br>
-      <%= f.date_field :birthdate, class: "form-control", required: true %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Nacionalidad", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :nationality, class: "form-control", required: true %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Sexo", class: "col-md-4 control-label" %><br>
-      <%= f.select(:gender_cd, [['Femenino', 'femenino'], ['Masculino', 'masculino']], class:"form-control", required: true ) %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Tipo de obra social", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :obra_social_type, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Numero de obra social", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :obra_social_number, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :"Telefono", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :phone, class: "form-control" %>
-    </div>
+    <%= f.input :firstname %>
+    <%= f.input :lastname %>
+    <%= f.input :type_document_cd, include_blank: false, as: :select,
+          collection:[['DNI', 'DNI'], ['CI', 'CI'], ['LD', 'LD']]%>
+    <%= f.input :document_number, input_html: {min: "800000", max: "99999999"} %>
+    <%= f.input :birthdate, as: :date, html5: true%>
+    <%= f.input :nationality %>
+    <%= f.input :gender_cd, include_blank: false, as: :select,
+          collection:[['Femenino', 'femenino'], ['Masculino', 'masculino']]%>
+    <%= f.input :obra_social_type %>
+    <%= f.input :obra_social_number %>
+    <%= f.input :phone %>
+    <%= f.input :observations %>
 
-    <div class="form-group">
-      <%= f.label :"Observaciones", class: "col-md-4 control-label" %><br>
-      <%= f.text_field :observations, class: "form-control" %>
     </div>
     <div class="actions form-group">
       <%= link_to "Cancelar", patients_path, class:"btn btn-danger"%>

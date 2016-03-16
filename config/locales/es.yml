@@ -31,3 +31,14 @@ es:
         esophagus: Esófago
         duodenum: Duodeno
         rectal_examination: Tacto Rectal
+  simple_form:
+    "yes": 'Si'
+    "no": 'No'
+    required:
+      text: 'Requerido'
+      mark: '*'
+
+  helpers:
+    submit:
+      create: "Guardar"
+      update: "Actulizar"
