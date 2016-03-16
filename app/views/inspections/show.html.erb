@@ -100,7 +100,7 @@
         <%= f.label :"Imagenes" %><br>
         <%= f.file_field :capture, multiple: true%>
       </div>
-      <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}/#{Time.new.strftime("%Y/%m/%d-%H:%Hhs")}}%>
+      <%= f.hidden_field :name, :value => %Q{#{@patient.lastname}_#{@patient.firstname}/#{Time.new.strftime("%Y/%m/%d-%H.%Hhs")}}%>
       <div class="actions form-group">
         <%= f.submit class:"btn btn-primary", value: "Guardar"%>
       </div>
