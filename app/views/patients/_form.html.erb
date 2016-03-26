@@ -20,7 +20,9 @@
           collection:[['DNI', 'DNI'], ['CI', 'CI'], ['LD', 'LD']]%>
     <%= f.input :document_number, input_html: {min: "800000", max: "99999999"} %>
     <%= f.input :birthdate, as: :date, html5: true%>
-    <%= f.input :nationality %>
+
+    <%= f.input :nationality, include_blank: false, as: :select,
+          collection: Country.all_translated('es'), selected: "Argentina" %>
     <%= f.input :gender_cd, include_blank: false, as: :select,
           collection:[['Femenino', 'femenino'], ['Masculino', 'masculino']]%>
     <%= f.input :obra_social_type %>
