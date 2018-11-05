@@ -8,12 +8,12 @@ Todavía está en desarrollo el sistema
 
 * Node.js
 * MySQL
+* Vagrant
 
 ## Instalación
 
 Instalar dependencias
-* Node `sudo apt install npm nodejs`
-* MySQL `sudo apt install mysql-client mysql-server libmysqlclient-dev libsqlite3-dev`
+`sudo apt install npm nodejs mysql-client mysql-server libmysqlclient-dev libsqlite3-dev vagrant`
 
 Instalar Ruby
 
