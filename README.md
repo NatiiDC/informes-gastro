@@ -12,15 +12,16 @@ Todavía está en desarrollo el sistema
 
 ## Instalación
 
-Instalar dependencias
+**Instalar dependencias**
+
 `sudo apt install npm nodejs mysql-client mysql-server libmysqlclient-dev libsqlite3-dev vagrant`
 
-Instalar Ruby
-
+**Instalar Ruby**
+ 
 * (Linux) `apt-get install ruby`
 * (Windows) http://rubyinstaller.org/downloads/ (version Ruby 2.0.0-p647 si es Windows XP)
 
-Instalar Bundler
+**Instalar Bundler**
 * `gem install bundler`
 
 Clonar o descargar el repositorio
