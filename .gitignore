@@ -1,5 +1,8 @@
 public/uploads/
 
+# Ignore Vagrant
+.vagrant/*
+
 # Ignore bundler config.
 /config/secrets.yml
 /config/database.yml
