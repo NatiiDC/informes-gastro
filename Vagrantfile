@@ -56,7 +56,7 @@ Vagrant.configure(2) do |config|
   home = "/home/#{user}"
   rbenv_path = "#{home}/.rbenv"
   profile_path = "#{home}/.bashrc"
-  ruby_version = '2.2.3'
+  ruby_version = '2.5.1'
   rbenv_abs_path = "#{rbenv_path}/bin/rbenv"
   gem_abs_path = "#{rbenv_path}/shims/gem"
   config.vm.provision "shell", inline: <<-SHELL
