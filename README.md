@@ -24,9 +24,15 @@ Todavía está en desarrollo el sistema
 **Instalar Bundler**
 * `gem install bundler`
 
-Clonar o descargar el repositorio
+**Clonar o descargar el repositorio**
 
-Ejecutar `bundle install`
+`git clone https://github.com/NatiiDC/informes-gastro.git`
+
+**Ejecutar**
+
+`bundle install`
+
+`bundle update`
 
 ## Ejecución
 
