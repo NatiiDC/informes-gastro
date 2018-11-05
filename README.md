@@ -12,7 +12,7 @@ Todavía está en desarrollo el sistema
 ## Instalación
 
 Instalar dependencias
-* Node `sudo apt install npm`
+* Node `sudo apt install npm nodejs`
 * MySQL `sudo apt install mysql-client mysql-server libmysqlclient-dev libsqlite3-dev`
 
 Instalar Ruby
