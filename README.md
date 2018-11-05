@@ -35,3 +35,5 @@ Ejecutar `bundle install`
   Migraciones: `bundle exec rake db:migrate`
   
   Datos de prueba: `bundle exec rake db:setup`
+  
+  Levantar la virtual: `vagrant up`
