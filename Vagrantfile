@@ -56,7 +56,7 @@ Vagrant.configure(2) do |config|
   home = "/home/#{user}"
   rbenv_path = "#{home}/.rbenv"
   profile_path = "#{home}/.bashrc"
-  ruby_version = '2.3.0'
+  ruby_version = '2.5.1'
   rbenv_abs_path = "#{rbenv_path}/bin/rbenv"
   gem_abs_path = "#{rbenv_path}/shims/gem"
   app_name = "sistema-informes"
@@ -66,7 +66,7 @@ Vagrant.configure(2) do |config|
 
   database_name = "informes_gastro"
   database_username = "root"
-  database_password = "naty20"
+  database_password = ""
 
   secret_key_base = "32a2c7298e68642ab7f60aed34fa96e2376b7dc8bc3197c5f1d870adc618a9e64747cba73327551a3b5ec75ea113ee3d9405cd06b18bac209b8b78bea9ba22d6"
 
