@@ -17,7 +17,7 @@ Todavía está en desarrollo el sistema
 `sudo apt install npm nodejs mysql-client mysql-server libmysqlclient-dev libsqlite3-dev vagrant`
 
 **Instalar Ruby**
- 
+
 * (Linux) `apt-get install ruby`
 * (Windows) http://rubyinstaller.org/downloads/ (version Ruby 2.0.0-p647 si es Windows XP)
 
@@ -37,11 +37,11 @@ Todavía está en desarrollo el sistema
 ## Ejecución
 
   Creación de la BD: `bundle exec rake db:create`
-  
+
   Migraciones: `bundle exec rake db:migrate`
-  
+
   Datos de prueba: `bundle exec rake db:setup`
-  
+
   Levantar la virtual: `vagrant up`
 
 ## Mode production
