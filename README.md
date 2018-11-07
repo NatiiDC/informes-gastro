@@ -1,16 +1,26 @@
 # Informes para estudios de gastroenterología
 
-Es un sistema de informes de **endoscopía** y **colonoscopia**. Se guardan los pacientes con su historial de informes. La sesión es a traves de redes sociales.
+Es un sistema de informes de **endoscopía** y **colonoscopia**. Se guardan los pacientes con su historial de informes.
 
-Todavía está en desarrollo el sistema
+La sesión es a traves de redes sociales será en una proxima versión.
+
+Una vista previa del sistema
+https://snag.gy/vf2wPd.jpg
+
+
 
 #### Dependencias externas
 
-* Node.js
-* MySQL
 * Vagrant
 
-## Instalación
+En el caso que no se use vagrant para levantarlo sino local
+
+* Node.js
+* MySQL
+
+## Instalación local
+
+Recomendación: Descargar vagrat desde la página del proveedor.
 
 **Instalar dependencias**
 
@@ -45,6 +55,8 @@ Todavía está en desarrollo el sistema
   Levantar la virtual: `vagrant up`
 
 ## Mode production
+
+[Provisioning de la VM y deployment con Capistrano](https://github.com/NatiiDC/informes-gastro/blob/master/Provisioning%20de%20la%20VM%20y%20deployment%20con%20Capistrano.md)
 
 utils:
 
