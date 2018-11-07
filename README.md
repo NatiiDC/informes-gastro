@@ -5,7 +5,8 @@ Es un sistema de informes de **endoscopía** y **colonoscopia**. Se guardan los 
 La sesión es a traves de redes sociales será en una proxima versión.
 
 Una vista previa del sistema
-https://snag.gy/vf2wPd.jpg
+
+![patients](https://i.snag.gy/vf2wPd.jpg "patients")
 
 
 
