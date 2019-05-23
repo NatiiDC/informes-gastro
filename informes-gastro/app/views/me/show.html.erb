@@ -1,0 +1,5 @@
+<% if current_doctor %>
+	<% current_doctor.attributes.each do |k, v| %>
+		<b><%= k %>:</b> <%= v %> <br>
+	<% end %>
+<% end %>
